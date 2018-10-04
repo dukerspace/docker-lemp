@@ -1,5 +1,9 @@
 FROM php:7.2-fpm
 
+LABEL author="Montol Saklor"
+LABEL maintainer="montolsaklor@gmail.com"
+LABEL build_date="2018-10-05"
+
 ENV TZ=Asia/Bangkok
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
