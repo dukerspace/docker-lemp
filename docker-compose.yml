@@ -9,7 +9,7 @@ services:
         restart: always
         volumes:
             - ./app/:/var/www
-            - ./log/www/:/var/www/log
+            - ./php-fpm/php.ini:/usr/local/etc/php/php.ini
     nginx:
         image: nginx:1.13
         depends_on:
