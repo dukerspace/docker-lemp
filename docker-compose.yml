@@ -1,11 +1,9 @@
 version: "3"
 services:
     app:
-        build: ./php7-fpm
+        build: ./php-fpm
         depends_on:
             - db
-        ports:
-            - 9000:9000
         restart: always
         volumes:
             - ./app/:/var/www
@@ -15,7 +13,7 @@ services:
         depends_on:
             - app
         ports:
-            - 8081:80
+            - 80:80
         restart: always
         volumes:
             - ./app/:/var/www
@@ -29,7 +27,7 @@ services:
             - MYSQL_USER=${MYSQL_USER}
             - MYSQL_PASSWORD=${MYSQL_PASSWORD}
         ports:
-            - "33061:3306"
+            - "3306:3306"
         restart: always
         volumes:
             - db-data:/var/lib/mysql
