@@ -1,4 +1,4 @@
-FROM php:7.2-fpm
+FROM php:7.4-fpm
 
 LABEL author="Montol Saklor"
 LABEL maintainer="montolsaklor@gmail.com"
@@ -9,6 +9,8 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
+        autoconf \
+	dpkg-dev \
         libfreetype6-dev \ 
         libicu-dev \ 
         libjpeg62-turbo-dev \ 
@@ -17,11 +19,13 @@ RUN apt-get update && apt-get install -y \
         libxslt1-dev \ 
         sendmail-bin \ 
         sendmail \ 
-        sudo
+        sudo \
+        libonig-dev \
+        libzip-dev
 
 # Configure the gd library
 RUN docker-php-ext-configure \
-        gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/        
+        gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/        
 
 # Install required PHP extensions
 RUN docker-php-ext-install \
@@ -30,7 +34,7 @@ RUN docker-php-ext-install \
         mbstring \ 
         pdo_mysql \ 
         zip \ 
-        soap 
+        soap
 
 # Install Composer
 RUN curl -o /tmp/composer-setup.php https://getcomposer.org/installer \
