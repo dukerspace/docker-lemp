@@ -1,8 +1,8 @@
-FROM php:7.4-fpm
+FROM php:8.0-fpm
 
 LABEL author="Montol Saklor"
 LABEL maintainer="montolsaklor@gmail.com"
-LABEL build_date="2018-10-05"
+LABEL build_date="2021-01-01"
 
 ENV TZ=Asia/Bangkok
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -10,7 +10,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # Install dependencies
 RUN apt-get update && apt-get install -y \
         autoconf \
-	dpkg-dev \
+        dpkg-dev \
         libfreetype6-dev \ 
         libicu-dev \ 
         libjpeg62-turbo-dev \ 

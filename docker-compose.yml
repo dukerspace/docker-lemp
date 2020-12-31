@@ -9,7 +9,7 @@ services:
             - ./app/:/var/www
             - ./php-fpm/php.ini:/usr/local/etc/php/php.ini
     nginx:
-        image: nginx:1.13
+        image: nginx:1.19
         depends_on:
             - app
         ports:
